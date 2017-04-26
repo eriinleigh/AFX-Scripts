@@ -1,0 +1,86 @@
+INFO:root:2016-06-17 14:07:33.870000 Compositing Started
+INFO:root:2016-06-17 14:07:34.589000 Building the XML
+INFO:root:2016-06-17 14:07:37.121000 Running the Compositor
+INFO:root:2016-06-17 14:08:53.460000 Updating Shotgun
+ERROR:root:2016-06-17 14:08:53.958000 There was an error running the script
+Traceback (most recent call last):
+  File "W:\DEV\PIPELINE\SHOTGUN\AMI_Scripts\CompositingAMIScript.py", line 396, in <module>
+    main(*sys.argv)
+  File "W:\DEV\PIPELINE\SHOTGUN\AMI_Scripts\CompositingAMIScript.py", line 45, in main
+    updateShotgun(sg, logging, variablesList, projectList['projectID'], projectList['pathToProject'])
+  File "W:\DEV\PIPELINE\SHOTGUN\AMI_Scripts\CompositingAMIScript.py", line 153, in updateShotgun
+    version = sg.upload('Version', version['id'], pathToMov, 'sg_uploaded_movie')
+  File "C:\Python27\lib\site-packages\shotgun_api3-3.0.31-py2.7.egg\shotgun_api3\shotgun.py", line 1528, in upload
+    raise ShotgunError("Path must be a valid file, got '%s'" % path)
+ShotgunError: Path must be a valid file, got 'W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq001_sh0010\v01\test_sq001_sh0010_fullres_v01.mov'
+INFO:root:2016-06-17 14:09:39.699000 Compositing Started
+INFO:root:2016-06-17 14:09:40.419000 Building the XML
+INFO:root:2016-06-17 14:09:42.800000 Running the Compositor
+INFO:root:2016-06-17 14:11:36.819000 Updating Shotgun
+ERROR:root:2016-06-17 14:11:43.103000 There was an error running the script
+Traceback (most recent call last):
+  File "W:\DEV\PIPELINE\SHOTGUN\AMI_Scripts\CompositingAMIScript.py", line 396, in <module>
+    main(*sys.argv)
+  File "W:\DEV\PIPELINE\SHOTGUN\AMI_Scripts\CompositingAMIScript.py", line 45, in main
+    updateShotgun(sg, logging, variablesList, projectList['projectID'], projectList['pathToProject'])
+  File "W:\DEV\PIPELINE\SHOTGUN\AMI_Scripts\CompositingAMIScript.py", line 153, in updateShotgun
+    version = sg.upload('Version', version['id'], pathToMov, 'sg_uploaded_movie')
+  File "C:\Python27\lib\site-packages\shotgun_api3-3.0.31-py2.7.egg\shotgun_api3\shotgun.py", line 1528, in upload
+    raise ShotgunError("Path must be a valid file, got '%s'" % path)
+ShotgunError: Path must be a valid file, got 'W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v01\test_sq006_sh0150_fullres_v01.mov'
+INFO:root:2016-06-17 14:17:23.159000 Compositing Started
+INFO:root:2016-06-17 14:17:24.007000 Building the XML
+INFO:root:2016-06-17 14:17:26.318000 Running the Compositor
+INFO:root:2016-06-17 14:19:24.563000 Updating Shotgun
+INFO:root:PathToMov does not exist: W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v01\test_sq006_sh0150_fullres_v01.mov
+INFO:root:2016-06-17 14:19:28.384000 Compositing Completed
+INFO:root:2016-06-17 14:24:46.708000 Compositing Started
+INFO:root:2016-06-17 14:24:47.740000 Building the XML
+INFO:root:2016-06-17 14:24:48.640000 Running the Compositor
+INFO:root:2016-06-17 14:25:40.707000 Updating Shotgun
+INFO:root:PathToMov does not exist: W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v01\test_sq006_sh0150_fullres_v01.mov
+INFO:root:2016-06-17 14:25:40.709000 Compositing Completed
+INFO:root:2016-06-17 14:25:53.643000 Compositing Started
+INFO:root:2016-06-17 14:25:54.657000 Building the XML
+INFO:root:2016-06-17 14:25:55.713000 Running the Compositor
+INFO:root:2016-06-17 14:26:57.794000 Updating Shotgun
+INFO:root:PathToMov does not exist: W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v01\test_sq006_sh0150_fullres_v01.mov
+INFO:root:2016-06-17 14:26:57.796000 Compositing Completed
+INFO:root:2016-06-17 14:27:24.538000 Compositing Started
+INFO:root:2016-06-17 14:27:25.325000 Building the XML
+INFO:root:2016-06-17 14:27:26.246000 Running the Compositor
+INFO:root:2016-06-17 14:29:32.652000 Updating Shotgun
+INFO:root:2016-06-17 14:29:38.539000 Compositing Completed
+INFO:root:2016-06-17 14:35:46.911000 Compositing Started
+INFO:root:2016-06-17 14:35:48.197000 Building the XML
+INFO:root:2016-06-17 14:35:49.458000 Running the Compositor
+INFO:root:2016-06-17 14:42:41.769000 Updating Shotgun
+INFO:root:PathToMov does not exist: W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v02\test_sq006_sh0150_preview_v02.mov
+INFO:root:2016-06-17 14:42:41.770000 Compositing Completed
+INFO:root:2016-06-17 14:42:57.509000 Compositing Started
+INFO:root:2016-06-17 14:42:58.310000 Building the XML
+INFO:root:2016-06-17 14:42:59.180000 Running the Compositor
+INFO:root:2016-06-17 14:43:15.021000 Updating Shotgun
+INFO:root:PathToMov does not exist: W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v02\test_sq006_sh0150_preview_v02.mov
+INFO:root:2016-06-17 14:43:15.023000 Compositing Completed
+INFO:root:2016-06-17 14:46:00.771000 Compositing Started
+INFO:root:2016-06-17 14:46:04.002000 Building the XML
+INFO:root:2016-06-17 14:46:05.246000 Running the Compositor
+INFO:root:2016-06-17 14:46:42.908000 Updating Shotgun
+INFO:root:PathToMov does not exist: W:\CLIENTNAME\WILLY GRUNCH\05_PROD\EPISODES\EP003_TEST\05_COMPOSITING\FINAL_IMAGES\sq006_sh0150\v02\test_sq006_sh0150_preview_v02.mov
+INFO:root:2016-06-17 14:46:42.910000 Compositing Completed
+INFO:root:2016-06-17 14:51:50.017000 Compositing Started
+INFO:root:2016-06-17 14:51:51.958000 Building the XML
+INFO:root:2016-06-17 14:51:53.697000 Running the Compositor
+INFO:root:2016-06-17 14:56:27.138000 Updating Shotgun
+INFO:root:2016-06-17 14:56:31.288000 Compositing Completed
+INFO:root:2016-06-17 14:57:22.886000 Compositing Started
+INFO:root:2016-06-17 14:57:23.622000 Building the XML
+INFO:root:2016-06-17 14:57:24.507000 Running the Compositor
+INFO:root:2016-06-17 15:00:49.877000 Updating Shotgun
+INFO:root:2016-06-17 15:00:58.955000 Compositing Completed
+INFO:root:2016-06-17 15:02:10.930000 Compositing Started
+INFO:root:2016-06-17 15:02:11.940000 Building the XML
+INFO:root:2016-06-17 15:02:16.791000 Running the Compositor
+INFO:root:2016-06-17 15:04:39.776000 Updating Shotgun
+INFO:root:2016-06-17 15:04:53.084000 Compositing Completed

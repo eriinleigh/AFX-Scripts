@@ -1,0 +1,279 @@
+
+//////////////////////////////////////////////
+////////////// Functions Library /////////////
+////////// Moondog Animation Studio //////////
+/////// Created by: Aurelien Kochalski ///////
+/////////// Adapted by: Erin Terre ///////////
+//////////////////////////////////////////////
+
+// this file includes all the generic functions that can be reused anywhere in the AfterFX scripts. for example reading an xml file, or opening a project.
+// to include this file in a script .jsx we have to use the following syntax : #include "FunctionsLibrary.jsxinc"
+
+//////////////////////////////////////////////////////////////////
+////////////////////////// LoadFile() ////////////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) oFile ////////////////////////////////////////
+////// INFO: load a file and returns an object file //////////////
+////// ERROR HANDLER: returns false if file does not exist ///////
+//////////////////////////////////////////////////////////////////
+
+function LoadFile(pathToFile)
+{
+	// creating an object file by passing the path to the file, this will load the file in memory
+	var oFile = new File(pathToFile);
+
+	// verifying if the object exists
+	if(oFile.exists)
+	{
+		return  oFile;
+	}
+
+	// file does not exist, display error and quit script
+    else
+    {
+        alert("Error : the file : '"+pathToFile+"' doesn't exists.");
+		return false;
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+////////////////////////// LoadXML() /////////////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) oXml /////////////////////////////////////////
+////// INFO: load xml file and returns an xml object /////////////
+////// ERROR HANDLER: returns false if file fails to load ////////
+//////////////////////////////////////////////////////////////////
+
+function LoadXML(pathToXml)
+{
+	// if the file has been loaded successfully
+	if(oFile = LoadFile(pathToXml))
+	{
+		// opening the xml file
+		if(oFile.open('r'))
+		{
+			// get content of xml file, create xml object, close the file, return xml object
+			var oFileContent = oFile.read();
+			var oXml = new XML(oFileContent);
+			oFile.close(); 
+			return oXml;
+		}
+
+		// file failed to load, display error and quit script
+        else
+        {
+            alert("Error : the file : '"+pathToXml+"' can't be opened.");
+			return false;
+        }
+	}
+
+	// file failed to load, display error and quit script
+    else
+    {
+        alert("Error : the file : '"+pathToXml+"' can't be loaded.");
+		return false;
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+//////////////////////// LoadConfig() ////////////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) config ///////////////////////////////////////
+////// INFO: load config and return as an array //////////////////
+////// ERROR HANDLER: returns false if file fails to load ////////
+//////////////////////////////////////////////////////////////////
+
+function LoadConfig(pathToConfig)
+{
+	var config = new Array();
+
+	// if the xml file has been loaded correctly
+	if(xmlConfig = LoadXML(pathToConfig))
+	{
+		// parse the sub nodes
+		for (var i=0; i<xmlConfig.elements().length(); i++) // parsing all the sub nodes
+		{
+			// parse the sub sub nodes
+			for (var j=0; j<xmlConfig.child(i).elements().length(); j++)
+			{
+				// NOTE: the array keys will be under the form : "node_subnode"
+				var itemKey = xmlConfig.child(i).localName()+"_"+xmlConfig.child(i).child(j).localName();
+				var itemValue = xmlConfig.child(i).child(j).@value;
+				config[itemKey] = itemValue;
+			}
+		}
+	}
+
+	// file failed to load, display error and quit script
+	else
+    {
+        alert("Error : the file : '"+pathToConfig+"' can't be loaded.");
+		return false;
+    }
+	
+	return config;
+}
+
+//////////////////////////////////////////////////////////////////
+//////////////////////// OpenProject() ///////////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) oProject /////////////////////////////////////
+////// INFO: opens AFX project and returns project file //////////
+////// ERROR HANDLER: returns false if file fails to load ////////
+//////////////////////////////////////////////////////////////////
+
+function OpenProject(pathToProject)
+{
+	// if the file has  been loaded
+	if(oFile = LoadFile(pathToProject)) 
+	{
+		// open project && return it
+		var oProject = app.open(oFile);
+		return oProject;
+	}
+
+	// file failed to load, display error and quit script
+    else
+    {
+        alert("Error : the file : '"+pathToProject+"' can't be loaded.");
+		return false;
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+///////////////////// GetCompositingsList() //////////////////////
+////// ARUGMENTS: (4) ////////////////////////////////////////////
+////// RETURNS: (1) rtnlistCompositings //////////////////////////
+////// INFO: returns list of compositing projects for a shot /////
+//////////////////////////////////////////////////////////////////
+
+function GetCompositingsList(project, episode, sequence, shot)
+{
+	// set pathToCompositings && create array to hold list
+	var pathToCompositings = config["paths_sharedDrive"]+"\\"+project+"\\05_PROD\\EPISODES\\"+episode+"\\05_COMPOSITING\\AFX\\";
+	var rtnlistCompositings = new Array();
+	
+	// Get episode name from episode
+	var episodeName = episode.split('_')
+	var episodeName = episodeName[1]
+
+	// check if folder needs to be created
+	var compositingsFolder = checkFolder(pathToCompositings);
+
+	// look only for .aep files in the correct format
+	var filter = episodeName.toLowerCase()+"_"+sequence.toLowerCase()+"_"+shot.toLowerCase()+"_"+"afx_v*.aep";
+	var folderContent = compositingsFolder.getFiles(filter);
+
+	// add each file name to rtnlistCompositings
+	for (var i=0; i<folderContent.length; i++)
+	{
+		var oElementName = folderContent[i].name;
+		rtnlistCompositings.push(oElementName);
+	}
+	
+	return rtnlistCompositings;
+}
+
+//////////////////////////////////////////////////////////////////
+///////////////////////// checkFolder() //////////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) folder ///////////////////////////////////////
+////// INFO: creates folder if it doesnt exist ///////////////////
+//////////////////////////////////////////////////////////////////
+
+function checkFolder(path)
+{
+	// get folder from the path
+	var folder = new Folder(path);
+
+	// create folder if it doesnt exist
+	if(!folder.exists)
+	{
+		folder.create();
+	}
+
+	return folder;
+}
+
+//////////////////////////////////////////////////////////////////
+/////////////////////////// zeropad() ////////////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) number ///////////////////////////////////////
+////// INFO: adds zeros to numbers inferior to 10 ////////////////
+//////////////////////////////////////////////////////////////////
+
+function zeropad(number) 
+{
+    return (number < 10) ? ("0" + number) : number;
+}
+
+//////////////////////////////////////////////////////////////////
+////////////////////// ProgressBarCreate() ///////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (1) winProgress //////////////////////////////////
+////// INFO: creates, returns, displays AFX progress bar /////////
+//////////////////////////////////////////////////////////////////
+
+function ProgressBarCreate(title)
+{
+	var resProgress = "palette \
+						{\
+							pBar: Progressbar { text: 'title', size:[500,20] }\
+						}";
+
+	var winProgress = new Window(resProgress, title);
+	winProgress.center();
+	winProgress.show();	
+
+	return winProgress;
+}
+
+//////////////////////////////////////////////////////////////////
+//////////////////// ProgressBarSetMaxValue() ////////////////////
+////// ARUGMENTS: (2) ////////////////////////////////////////////
+////// RETURNS: (0)  /////////////////////////////////////////////
+////// INFO: redefines max value of progress bar /////////////////
+//////////////////////////////////////////////////////////////////
+
+function ProgressBarSetMaxValue(oProgressBar, maxValue)
+{
+	oProgressBar.pBar.maxvalue = maxValue;
+}
+
+
+//////////////////////////////////////////////////////////////////
+////////////////// ProgressBarSetCurrentValue() //////////////////
+////// ARUGMENTS: (2) ////////////////////////////////////////////
+////// RETURNS: (0)  /////////////////////////////////////////////
+////// INFO: redefines actual value of progress bar //////////////
+//////////////////////////////////////////////////////////////////
+
+function ProgressBarSetCurrentValue(oProgressBar, currentValue)
+{
+	oProgressBar.pBar.value = currentValue;
+}
+
+//////////////////////////////////////////////////////////////////
+////////////////////// ProgressBarSetText() //////////////////////
+////// ARUGMENTS: (2) ////////////////////////////////////////////
+////// RETURNS: (0)  /////////////////////////////////////////////
+////// INFO: redefines progress bar text /////////////////////////
+//////////////////////////////////////////////////////////////////
+
+function ProgressBarSetText(oProgressBar, text)
+{
+	oProgressBar.text = text;
+}
+
+//////////////////////////////////////////////////////////////////
+/////////////////////// ProgressBarClose() ///////////////////////
+////// ARUGMENTS: (1) ////////////////////////////////////////////
+////// RETURNS: (0)  /////////////////////////////////////////////
+////// INFO: closes the progress bar /////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+function ProgressBarClose(oProgressBar)
+{
+	oProgressBar.close();
+}
+

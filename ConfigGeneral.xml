@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+	<paths>
+		<sharedDrive value="W:" />
+	</paths>
+		
+	<afterFx>
+		<renderPresetHalfRes value="MD_Render_DemiRes" />
+		<renderPresetFullRes value="MD_Render_FullRes" />
+		<outputModuleHalfRes value="MD_OutputModule_Demi" />
+		<outputModuleFullResSequence value="MD_OutputModule_PNG" />
+		<outputModuleFullRes value="MD_OutputModule_MOV" />
+		<globalfps value="24" />
+	</afterFx>
+
+	<projects>
+		<project value="CLIENTNAME\\PROJECT NAME" />
+		<episode value="EP003_TEST" />
+		<animatic value="test_ATK_v04.mp4" />
+	</projects>
+</config>

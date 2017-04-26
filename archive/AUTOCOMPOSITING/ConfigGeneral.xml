@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+	<paths>
+		<sharedDrive value="W:" />
+	</paths>
+		
+	<afterFx>
+		<renderPresetHalfRes value="MD_Render_DemiRes" />
+		<renderPresetFullRes value="MD_Render_FullRes" />
+		<outputModuleHalfRes value="MD_OutputModule_Demi" />
+		<outputModuleFullResSequence value="MD_OutputModule_PNG" />
+		<outputModuleFullRes value="MD_OutputModule_MOV" />
+		<globalfps value="25" />
+	</afterFx>
+
+	<projects>
+		<project value="WILLY GRUNCH" />
+	</projects>
+</config>
